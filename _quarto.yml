@@ -6,7 +6,9 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: SE Book
+      - href: SE.qmd
+        text: Fuzzing Book
 
 format:
   html:

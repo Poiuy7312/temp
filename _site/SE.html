@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Preston-Smith203 - Professional Précis SE Book</title>
+<title>Preston-Smith203 - Professional Précis Fuzzing Book</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -60,6 +94,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">SE Book</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./SE.html" rel="" target="">
+    <a class="nav-link active" href="./SE.html" rel="" target="" aria-current="page">
  <span class="menu-text">Fuzzing Book</span></a>
   </li>  
 </ul>
@@ -105,14 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#se1-programming-overtime" id="toc-se1-programming-overtime" class="nav-link active" data-scroll-target="#se1-programming-overtime"><strong>SE1</strong> Programming Overtime</a>
-  <ul class="collapse">
-  <li><a href="#use-case" id="toc-use-case" class="nav-link" data-scroll-target="#use-case">Use-case</a></li>
-  </ul></li>
-  <li><a href="#se2-what-is-software-engineering" id="toc-se2-what-is-software-engineering" class="nav-link" data-scroll-target="#se2-what-is-software-engineering"><strong>SE2</strong> What is Software Engineering?</a>
-  <ul class="collapse">
-  <li><a href="#use-case-1" id="toc-use-case-1" class="nav-link" data-scroll-target="#use-case-1">Use-Case</a></li>
-  </ul></li>
+  <li><a href="#fb1-introduction-to-software-testing" id="toc-fb1-introduction-to-software-testing" class="nav-link active" data-scroll-target="#fb1-introduction-to-software-testing"><strong>FB1</strong> Introduction to Software Testing</a></li>
   </ul>
 </nav>
     </div>
@@ -121,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Professional Précis SE Book</h1>
+<h1 class="title">Professional Précis Fuzzing Book</h1>
 <p class="subtitle lead">Preston Smith</p>
 </div>
 
@@ -137,28 +166,25 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="se1-programming-overtime" class="level2">
-<h2 class="anchored" data-anchor-id="se1-programming-overtime"><strong>SE1</strong> <a href="https://abseil.io/resources/swe-book/html/pr01.html#programming_over_time">Programming Overtime</a></h2>
-<p>The difference between software engineering and programming is really professionalism and consistency ultimetly software engineering can be defined as programming integrated overtime. What can someone do to make a code sustainable and improve upon in the future what are some tools that can be used to make something more efficient all of this is software engineering. There are three things to take into account according to The section <strong>Programming Overtime</strong> in the book Software Engineering at Google.</p>
-<ul>
-<li><p>How the code will need to be changed over its life time</p></li>
-<li><p>How you will have to adapt as things change and evolve</p></li>
-<li><p>Take into account Time change Scale and growth when making a decision.</p></li>
-</ul>
-<section id="use-case" class="level3">
-<h3 class="anchored" data-anchor-id="use-case">Use-case</h3>
-<p>I belive this way of thinking is not only beneficial to Chasten but almost any software engineering project in general because at the end of the day all its saying is expect things to change. And how you need to make decisions which means you may not be able to do everthing you wanted to which I feel should be somewhat expected alot of the time.</p>
-</section>
-</section>
-<section id="se2-what-is-software-engineering" class="level2">
-<h2 class="anchored" data-anchor-id="se2-what-is-software-engineering"><strong>SE2</strong> <a href="https://abseil.io/resources/swe-book/html/ch01.html">What is Software Engineering?</a></h2>
-<p>Once again Software Engineering is defined as programming overtime but this time in more detail. While a programming project might be a single person endeavor a software engineering project is a team effort. Teamwork is very important for these types of projects as while working as a team can have it owns issues the amount you can do with more people is much greater. You have to take into account problems and changes to the software appearing as its being made and when its already released. You need to make trade offs between how much money or time something is gonna cost and how much benefit it will have for the software. A software engineering project is expected to last for years and with that needs to be amiable to changes as maybe the dependencies it uses change the OS changes and also competition at least at a large scale that might arise as to not be overshadowed by superior software.</p>
-<section id="use-case-1" class="level3">
-<h3 class="anchored" data-anchor-id="use-case-1">Use-Case</h3>
-<p>This way of thinking while I don’t think entirely applicable to chasten I think the importance of working together and take into account how things change is very important especially since overall we seem to be having problems working together and being organized. This has lead to things not being done on time multiple people being confused on what they should do and what they are doing. So I think communication with each other is very important for chasten and software in general and after that comes the more complicated questions on how chasten may change overtime how long do we want it to last and how amicable it is are second to teamwork.</p>
+<section id="fb1-introduction-to-software-testing" class="level2">
+<h2 class="anchored" data-anchor-id="fb1-introduction-to-software-testing"><strong>FB1</strong> Introduction to Software Testing</h2>
+<p>It is important to test your code and be able to understand it. You can test your code by putting in inputs you know the expected outcome for and compare or you can write a test case for it which will automatically test and compare the actual output and the set expected output for you. In some cases you can even in a way generate a test case the <strong>Fuzzingbook</strong> has a really good example of this.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assertEquals(x, y, epsilon<span class="op">=</span><span class="fl">1e-8</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">abs</span>(x <span class="op">-</span> y) <span class="op">&lt;</span> epsilon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is for testing a Square root function as <span class="math inline">\(\sqrt{n} * \sqrt{n} = n\)</span>. Since that is always true you don’t really need a test case for different types of numbers. You should also check for invalid inputs so if someone trys to put a string into something that calculates squares thats obviously not going to work so your code should account for that in someway. <strong>Fuzzingbook</strong> has another good example of this</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sqrt_program(arg: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:  <span class="co"># type: ignore</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="bu">float</span>(arg)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Illegal Input"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Illegal Number"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'The root of'</span>, x, <span class="st">'is'</span>, my_sqrt(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Overall writing test cases and testing your code can be very beneficial not only for chasten but anything you do as it will make your code more polished proffesional and easier to use for anyone trying to.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
