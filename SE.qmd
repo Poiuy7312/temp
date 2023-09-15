@@ -35,6 +35,27 @@ def sqrt_program(arg: str) -> None:  # type: ignore
             print('The root of', x, 'is', my_sqrt(x))
 ```
 
+### Use-case
 Overall writing test cases and testing your code can be very beneficial not only
 for chasten but anything you do as it will make your code more polished proffesional
 and easier to use for anyone trying to.
+
+## FB2
+
+Code Coverage is very important when writing test cases because you want to strive
+for as much of your code being tested as possible. So being able to check the
+effectiveness and coverage is crucial when writing good test cases. An example on
+how you can test this is in the **Fuzzing Book** where there is a library with functions
+like .trace() and .coverage() which list what lines are in a given function and one
+returns what lines of code are atleast run once. and using these librarys there was
+code that prints out code with the run lines marked by a **#** symbol
+
+### Use-case
+
+This can be very useful when working on chasten to test if your the test cases being
+written and already there are doing there job properly. One of the last things you
+want is for you test your code think it works but a significant portion of it not
+being tested and maybe their is some major bug that is missed as a result. This is
+even more important when making software other people are going to use because then
+alot more things can go wrong because the code may need to adapt to different computers
+causing more issues that could be missed by testing.
