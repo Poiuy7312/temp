@@ -40,7 +40,7 @@ Overall writing test cases and testing your code can be very beneficial not only
 for chasten but anything you do as it will make your code more polished proffesional
 and easier to use for anyone trying to.
 
-## FB2
+## **FB2** Code Coverage
 
 Code Coverage is very important when writing test cases because you want to strive
 for as much of your code being tested as possible. So being able to check the
