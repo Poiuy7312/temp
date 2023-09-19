@@ -44,3 +44,21 @@ communication with each other is very important for chasten and software in gene
 comes the more complicated questions on how chasten may change overtime how long do we want it to
 last and how amicable it is are second to teamwork.
 
+## **SE3** [How to Work Well on Teams](https://abseil.io/resources/swe-book/html/ch02.html)
+
+Teamwork is an important aspect of Softare Engineering almost every major accomplishment in
+Software Engineering was accomplished by groups of people not one person by themselves. While
+Linus Torvalds created the framework for Linux the vast majority of its current form was made
+by other people their is not just one person who's good at everything many people are required
+to make something truelly great even if you might consider someone a genius. It doesn't require
+a genius to make something important just a team of individuals who communicate, cooperate and
+criticize to get the best possible product or result. Michael Jordan didn't win six championships
+as an individual he one them as a part of the Chicago Bulls basketball team. 
+
+### Use-Case
+
+This is very important to keep in mind two minds are better then one you aren't going to be able
+to do everything on your own. For chasten while its not the largest project it certainly not something
+we can achieve as individuals almost everything we do can effect someone elses work making it important
+that we communicate what where doing and why were doing it. Things get done faster and often better when
+working together.
