@@ -59,3 +59,40 @@ being tested and maybe their is some major bug that is missed as a result. This 
 even more important when making software other people are going to use because then
 alot more things can go wrong because the code may need to adapt to different computers
 causing more issues that could be missed by testing.
+
+## **FB3** Fuzzing
+
+The basic idea of fuzzing is to test as many possible reasonable inputs as possible so if
+you have a function that is supposed to receive a string. Then you can create a fuzzing
+generator that creates a string of random characters and with that and a runner to run the
+code you can test the limits of that specific function or program. This is a great way to
+test your code with unorthodox inputs and while they may be unlikely it can still help find.
+greater problems like let’s say you have a program that can only take a certain length of 
+string before it crashes or if you’re doing something with math and a weird number or abnormally
+large number causes crashes or bugs. A fuzzer is a great way to help find these issues as 
+there are so many different numbers and characters that can possibly be used by the code as
+inputs that having something to just check as many possibilities as possible can help improve
+the programs efficiency and robustness.
+
+### The **FuzzingBook** has a great example of a basic fuzzer:
+
+```python
+def fuzzer(max_length: int = 100, char_start: int = 32, char_range: int = 32) -> str:
+    """A string of up to `max_length` characters
+       in the range [`char_start`, `char_start` + `char_range`)"""
+    string_length = random.randrange(0, max_length + 1)
+    out = ""
+    for i in range(0, string_length):
+        out += chr(random.randrange(char_start, char_start + char_range))
+    return out
+```
+
+### Use-case
+
+This can be a very useful concept for helping to uncover bugs as in my experience with chasten
+I've found a lot of bugs by just running the program with expected outputs. So, I can only 
+imagine how many there are when there’s a lot of information it must sort through or when there’s
+an unexpected input which isn't necessarily a bug, but it very well could be and the concept of 
+something checking multiple different inputs and possibilities may help uncover many obscure bug
+and issues.
+

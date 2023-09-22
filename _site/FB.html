@@ -149,6 +149,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-1" id="toc-use-case-1" class="nav-link" data-scroll-target="#use-case-1">Use-case</a></li>
   </ul></li>
+  <li><a href="#fb3-fuzzing" id="toc-fb3-fuzzing" class="nav-link" data-scroll-target="#fb3-fuzzing"><strong>FB3</strong> Fuzzing</a>
+  <ul class="collapse">
+  <li><a href="#the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer" id="toc-the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer" class="nav-link" data-scroll-target="#the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer">The <strong>FuzzingBook</strong> has a great example of a basic fuzzer:</a></li>
+  <li><a href="#use-case-2" id="toc-use-case-2" class="nav-link" data-scroll-target="#use-case-2">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -200,6 +205,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-1" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-1">Use-case</h3>
 <p>This can be very useful when working on chasten to test if your the test cases being written and already there are doing there job properly. One of the last things you want is for you test your code think it works but a significant portion of it not being tested and maybe their is some major bug that is missed as a result. This is even more important when making software other people are going to use because then alot more things can go wrong because the code may need to adapt to different computers causing more issues that could be missed by testing.</p>
+</section>
+</section>
+<section id="fb3-fuzzing" class="level2">
+<h2 class="anchored" data-anchor-id="fb3-fuzzing"><strong>FB3</strong> Fuzzing</h2>
+<p>The basic idea of fuzzing is to test as many possible reasonable inputs as possible so if you have a function that is supposed to receive a string. Then you can create a fuzzing generator that creates a string of random characters and with that and a runner to run the code you can test the limits of that specific function or program. This is a great way to test your code with unorthodox inputs and while they may be unlikely it can still help find. greater problems like let’s say you have a program that can only take a certain length of string before it crashes or if you’re doing something with math and a weird number or abnormally large number causes crashes or bugs. A fuzzer is a great way to help find these issues as there are so many different numbers and characters that can possibly be used by the code as inputs that having something to just check as many possibilities as possible can help improve the programs efficiency and robustness.</p>
+<section id="the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer" class="level3">
+<h3 class="anchored" data-anchor-id="the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer">The <strong>FuzzingBook</strong> has a great example of a basic fuzzer:</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fuzzer(max_length: <span class="bu">int</span> <span class="op">=</span> <span class="dv">100</span>, char_start: <span class="bu">int</span> <span class="op">=</span> <span class="dv">32</span>, char_range: <span class="bu">int</span> <span class="op">=</span> <span class="dv">32</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A string of up to `max_length` characters</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">       in the range [`char_start`, `char_start` + `char_range`)"""</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    string_length <span class="op">=</span> random.randrange(<span class="dv">0</span>, max_length <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, string_length):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        out <span class="op">+=</span> <span class="bu">chr</span>(random.randrange(char_start, char_start <span class="op">+</span> char_range))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="use-case-2" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-2">Use-case</h3>
+<p>This can be a very useful concept for helping to uncover bugs as in my experience with chasten I’ve found a lot of bugs by just running the program with expected outputs. So, I can only imagine how many there are when there’s a lot of information it must sort through or when there’s an unexpected input which isn’t necessarily a bug, but it very well could be and the concept of something checking multiple different inputs and possibilities may help uncover many obscure bug and issues.</p>
 
 
 </section>
