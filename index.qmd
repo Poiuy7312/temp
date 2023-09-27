@@ -62,3 +62,23 @@ to do everything on your own. For chasten while its not the largest project it c
 we can achieve as individuals almost everything we do can effect someone elses work making it important
 that we communicate what where doing and why were doing it. Things get done faster and often better when
 working together.
+
+## **SE4** [Knowledge Sharing](https://abseil.io/resources/swe-book/html/ch03.html)
+
+People in your organization or team should understand the problems of your software better than the
+internet. Often what happens is people with hold information so people will have a lot of information of
+a certain part but when they need to work with a different part of the program they don't have the knowledge
+needed to work efficiently. This is not what you want you want everyone to be properly educated on the software
+there working on. This also causes people working in the same team to do things differently because they have
+different information which can cause conflicts and confusion slowing down the process of making a proper
+software program. Relating to the bus factor if one person has all information on a subject and they get
+hit by a bus all the information is gone setting the project back significantly depending on what that person
+withheld then having to need people figure it out for themselves.
+
+### Use-Case
+
+With Chasten alot of people only have information on certain parts of the software and this causes problems when
+these people aren't present as then we have no information on possibly a major part of the program leaving everyone
+guessing what is going on. Some people barely know the basics of the program so they may be assigned to a task and
+making very little progress because they don't have the information required and no-one would know as it's not
+communicated.
