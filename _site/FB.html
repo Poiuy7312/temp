@@ -154,6 +154,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer" id="toc-the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer" class="nav-link" data-scroll-target="#the-fuzzingbook-has-a-great-example-of-a-basic-fuzzer">The <strong>FuzzingBook</strong> has a great example of a basic fuzzer:</a></li>
   <li><a href="#use-case-2" id="toc-use-case-2" class="nav-link" data-scroll-target="#use-case-2">Use-case</a></li>
   </ul></li>
+  <li><a href="#fb4-mutation-analysis" id="toc-fb4-mutation-analysis" class="nav-link" data-scroll-target="#fb4-mutation-analysis"><strong>FB4</strong> Mutation Analysis</a>
+  <ul class="collapse">
+  <li><a href="#use-case-3" id="toc-use-case-3" class="nav-link" data-scroll-target="#use-case-3">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,6 +228,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-2" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-2">Use-case</h3>
 <p>This can be a very useful concept for helping to uncover bugs as in my experience with chasten I’ve found a lot of bugs by just running the program with expected outputs. So, I can only imagine how many there are when there’s a lot of information it must sort through or when there’s an unexpected input which isn’t necessarily a bug, but it very well could be and the concept of something checking multiple different inputs and possibilities may help uncover many obscure bug and issues.</p>
+</section>
+</section>
+<section id="fb4-mutation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="fb4-mutation-analysis"><strong>FB4</strong> Mutation Analysis</h2>
+<p>Mutation analysis is really just giving a function improper input on purpose the idea being if it. can’t detect when an input is incorrect it won’t be able to detect a bug. So, you can make functions that. take a test case and change it in certain ways to see if the program notices the change and if it doesn’t. you can have a problem. But you need to be careful when analyzing the mutations as they may be functionally. identical to the original meaning you haven’t found a real issue.</p>
+<p>An example of what you want to avoid is provided by the fuzzing book while being a bit extreme circumstance.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ineffective_test_2():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        execute_the_program_as_a_whole()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>While this technically run the code and gets code coverage another important subject when it comes to testing but that only checks if the test case runs all the code not if it actually checks what it’s supposed to. The above test case always returns true because all it does is run the function and if the function doesn’t run it still just. returns true because when asserting it doesn’t compare it to anything.</p>
+<section id="use-case-3" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-3">Use-case</h3>
+<p>Mutation analysis is important when testing as you need to make sure your code is thoroughly testing what you want and isn’t giving any false negatives or false positives as then there may be a bug or issue you don’t know about. While you don’t need to right a function to mutate it for you it’s good to maybe have test cases that purposely fail so that you know your code won’t take improper inputs and run not finding any issues.</p>
 
 
 </section>
