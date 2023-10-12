@@ -6,9 +6,9 @@ subtitle: "Preston Smith"
 ## **FB1** Introduction to Software Testing
 
 It is important to test your code and be able to understand it. You can test your code by
-putting in inputs you know the expected outcome for and compare or you can write a test
-case for it which will automatically test and compare the actual output and the set expected
-output for you. In some cases you can even in a way generate a test case the **Fuzzingbook**
+putting in inputs you know the expected outcome for and compare or you can write a test-case
+for it which will automatically test and compare the actual output and the set expected
+output for you. In some cases you can even in a way generate a test case of the **Fuzzingbook**
 has a really good example of this.
 
 ```python
@@ -16,10 +16,10 @@ def assertEquals(x, y, epsilon=1e-8):
     assert abs(x - y) < epsilon
 ```
 This is for testing a Square root function as $\sqrt{n} * \sqrt{n} = n$.
-Since that is always true you don't really need a test case for different types
-of numbers. You should also check for invalid inputs so if someone trys to put
-a string into something that calculates squares thats obviously not going to
-work so your code should account for that in someway. **Fuzzingbook** has another
+Since that is always true you don't need a test case for different types
+of numbers. You should also check for invalid inputs so if someone tries to put
+a string into something that calculates squares that's not going to
+work so your code should account for that in some way. **Fuzzingbook** has another
 good example of this
 
 ```python
@@ -37,27 +37,27 @@ def sqrt_program(arg: str) -> None:  # type: ignore
 
 ### Use-case
 Overall writing test cases and testing your code can be very beneficial not only
-for chasten but anything you do as it will make your code more polished proffesional
+for chasten but anything you do as it will make your code more polished and professional
 and easier to use for anyone trying to.
 
 ## **FB2** Code Coverage
 
 Code Coverage is very important when writing test cases because you want to strive
 for as much of your code being tested as possible. So being able to check the
-effectiveness and coverage is crucial when writing good test cases. An example on
-how you can test this is in the **Fuzzing Book** where there is a library with functions
+effectiveness and coverage are crucial when writing good test cases. An example on
+how you can test this in the **Fuzzing Book** where there is a library with functions
 like .trace() and .coverage() which list what lines are in a given function and one
-returns what lines of code are atleast run once. and using these librarys there was
+returns what lines of code are at least run once. and using these libraries there was
 code that prints out code with the run lines marked by a **#** symbol
 
 ### Use-case
 
-This can be very useful when working on chasten to test if your the test cases being
-written and already there are doing there job properly. One of the last things you
-want is for you test your code think it works but a significant portion of it not
-being tested and maybe their is some major bug that is missed as a result. This is
+This can be very useful when working on chasten to test if the test cases being
+written and already there are doing their job properly. One of the last things you
+want is for you to test your code think it works but a significant portion of it is not
+being tested and maybe there is some major bug that is missed as a result. This is
 even more important when making software other people are going to use because then
-alot more things can go wrong because the code may need to adapt to different computers
+a lot more things can go wrong. After all, the code may need to adapt to different computers
 causing more issues that could be missed by testing.
 
 ## **FB3** Fuzzing
@@ -70,9 +70,9 @@ test your code with unorthodox inputs and while they may be unlikely it can stil
 greater problems like let’s say you have a program that can only take a certain length of 
 string before it crashes or if you’re doing something with math and a weird number or abnormally
 large number causes crashes or bugs. A fuzzer is a great way to help find these issues as 
-there are so many different numbers and characters that can possibly be used by the code as
+so many different numbers and characters can be used by the code as
 inputs that having something to just check as many possibilities as possible can help improve
-the programs efficiency and robustness.
+the program's efficiency and robustness.
 
 ### The **FuzzingBook** has a great example of a basic fuzzer:
 
@@ -93,15 +93,15 @@ This can be a very useful concept for helping to uncover bugs as in my experienc
 I've found a lot of bugs by just running the program with expected outputs. So, I can only 
 imagine how many there are when there’s a lot of information it must sort through or when there’s
 an unexpected input which isn't necessarily a bug, but it very well could be and the concept of 
-something checking multiple different inputs and possibilities may help uncover many obscure bug
+something checking multiple different inputs and possibilities may help uncover many obscure bugs
 and issues.
 
 ## **FB4** Mutation Analysis
 
-Mutation analysis is really just giving a function improper input on purpose the idea being if it.
+Mutation analysis is just giving a function improper input on purpose the idea being if it.
 can’t detect when an input is incorrect it won't be able to detect a bug. So, you can make functions that.
 take a test case and change it in certain ways to see if the program notices the change and if it doesn’t.
-you can have a problem. But you need to be careful when analyzing the mutations as they may be functionally.
+you can have a problem. But you need to be careful when analyzing the mutations as they may be functionally
 identical to the original meaning you haven't found a real issue.
 
 An example of what you want to avoid is provided by the fuzzing book while being a bit extreme circumstance.
@@ -115,8 +115,8 @@ def ineffective_test_2():
     assert True
 ```
 
-While this technically run the code and gets code coverage another important subject when it comes to testing
-but that only checks if the test case runs all the code not if it actually checks what it’s supposed to. The above
+While this technically runs the code and gets code coverage another important subject when it comes to testing
+but that only checks if the test case runs all the code not if it checks what it’s supposed to. The above
 test case always returns true because all it does is run the function and if the function doesn't run it still just.
 returns true because when asserting it doesn't compare it to anything.
 
@@ -124,5 +124,5 @@ returns true because when asserting it doesn't compare it to anything.
 
 Mutation analysis is important when testing as you need to make sure your code is thoroughly testing what you want and
 isn't giving any false negatives or false positives as then there may be a bug or issue you don't know about. While
-you don't need to right a function to mutate it for you it’s good to maybe have test cases that purposely fail so
+you don't need to write a function to mutate it for you it’s good to maybe have test cases that purposely fail so
 that you know your code won’t take improper inputs and run not finding any issues.
