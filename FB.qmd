@@ -126,3 +126,34 @@ Mutation analysis is important when testing as you need to make sure your code i
 isn't giving any false negatives or false positives as then there may be a bug or issue you don't know about. While
 you don't need to write a function to mutate it for you it’s good to maybe have test cases that purposely fail so
 that you know your code won’t take improper inputs and run not finding any issues.
+
+
+## **FB5** Mutation-Based Fuzzing
+
+Since fuzzing and generating random inputs can often cause difficulties with syntax and may often just come up with unreasonable inputs you can fix this type of issue with mutation-based fuzzing. This works by only changing small things
+for each input, so everything should be around the same structure with small differences this makes it so the inputs can be
+more reasonable and are still checking what happens with your code. While this may make your testing less broad it helps get rid
+of some of the redundant testing that happens when running a fuzzer most likely most of your tests are redundant.
+
+```python
+def mutate(s: str) -> str:
+    """Return s with a random mutation applied"""
+    mutators = [
+        delete_random_character,
+        insert_random_character,
+        flip_random_character
+    ]
+    mutator = random.choice(mutators)
+    # print(mutator)
+    return mutator(s)
+```
+
+This is an example of a mutator it takes an input decides to use a function that changes it in some way and returns the resulting
+value. This just changes small things to an already predefined input so it's not completely randomly generated so it's more focused testing.
+
+### Use-Case
+
+I believe this version of testing for chasten is a lot more useful and is kind of what hypothesis is used for while it's not the same
+thing it allows you to focus your fuzzing through the use of strategies. So the concept itself is very useful making it so you not just
+testing random inputs and similar but different inputs in a circumstance it's expected.
+

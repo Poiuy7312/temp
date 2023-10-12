@@ -158,6 +158,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-3" id="toc-use-case-3" class="nav-link" data-scroll-target="#use-case-3">Use-case</a></li>
   </ul></li>
+  <li><a href="#fb5-mutation-based-fuzzing" id="toc-fb5-mutation-based-fuzzing" class="nav-link" data-scroll-target="#fb5-mutation-based-fuzzing"><strong>FB5</strong> Mutation-Based Fuzzing</a>
+  <ul class="collapse">
+  <li><a href="#use-case-4" id="toc-use-case-4" class="nav-link" data-scroll-target="#use-case-4">Use-Case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -244,6 +248,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-3" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-3">Use-case</h3>
 <p>Mutation analysis is important when testing as you need to make sure your code is thoroughly testing what you want and isn’t giving any false negatives or false positives as then there may be a bug or issue you don’t know about. While you don’t need to write a function to mutate it for you it’s good to maybe have test cases that purposely fail so that you know your code won’t take improper inputs and run not finding any issues.</p>
+</section>
+</section>
+<section id="fb5-mutation-based-fuzzing" class="level2">
+<h2 class="anchored" data-anchor-id="fb5-mutation-based-fuzzing"><strong>FB5</strong> Mutation-Based Fuzzing</h2>
+<p>Since fuzzing and generating random inputs can often cause difficulties with syntax and may often just come up with unreasonable inputs you can fix this type of issue with mutation-based fuzzing. This works by only changing small things for each input, so everything should be around the same structure with small differences this makes it so the inputs can be more reasonable and are still checking what happens with your code. While this may make your testing less broad it helps get rid of some of the redundant testing that happens when running a fuzzer most likely most of your tests are redundant.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutate(s: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return s with a random mutation applied"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    mutators <span class="op">=</span> [</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        delete_random_character,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        insert_random_character,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        flip_random_character</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    mutator <span class="op">=</span> random.choice(mutators)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(mutator)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mutator(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is an example of a mutator it takes an input decides to use a function that changes it in some way and returns the resulting value. This just changes small things to an already predefined input so it’s not completely randomly generated so it’s more focused testing.</p>
+<section id="use-case-4" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-4">Use-Case</h3>
+<p>I believe this version of testing for chasten is a lot more useful and is kind of what hypothesis is used for while it’s not the same thing it allows you to focus your fuzzing through the use of strategies. So the concept itself is very useful making it so you not just testing random inputs and similar but different inputs in a circumstance it’s expected.</p>
 
 
 </section>
