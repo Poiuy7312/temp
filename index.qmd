@@ -100,3 +100,19 @@ unintended issues that may anger people or offend them.
 I think within this class I think the idea of thinking about who is using your software is very important and expecting many
 different types of people to use it. And while there probably won't be anything as serious as what happened with Google it's still
 important to design software with other people in mind not just the ones making it.
+
+## **SE6** [How to Lead a Team](https://abseil.io/resources/swe-book/html/ch05.html)
+
+In a software engineering team there needs to be some form of leader otherwise the team may be directionless and unorganized.
+While it is good to have everyone to contribute to conversations you can't have everyone lead themselves as this causes groups
+to be disjointed and inefficient. It's important to have someone to make sure things are getting done teams are properly staffed
+to fix an issue or add a feature. A lot of people avoid taking on a manager type of role because they often feel like they didn't
+do anything because you'll often be written less code. It also is significantly more responsibilty and in return stress.
+
+### Use-case
+
+I think having a leader would be very important for the class and while we do technically have leaders they change everyweek which
+leads to different things being the focus each week or there not being a focus at all leading to nothing really getting done at a
+reasonable pace. The leaders being changed everyweek also causes people who may not be ready for that responsibility and there being
+forced into that situation which is fine in a classroom circumstance because it's relativly low stakes but I believe it's partially
+one of the reasons alot of issues have taken alot longer than expected to fix.
