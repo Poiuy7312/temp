@@ -127,7 +127,6 @@ isn't giving any false negatives or false positives as then there may be a bug o
 you don't need to write a function to mutate it for you it’s good to maybe have test cases that purposely fail so
 that you know your code won’t take improper inputs and run not finding any issues.
 
-
 ## **FB5** Mutation-Based Fuzzing
 
 Since fuzzing and generating random inputs can often cause difficulties with syntax and may often just come up with unreasonable inputs you can fix this type of issue with mutation-based fuzzing. This works by only changing small things
@@ -157,3 +156,33 @@ I believe this version of testing for chasten is a lot more useful and is kind o
 thing it allows you to focus your fuzzing through the use of strategies. So the concept itself is very useful making it so you not just
 testing random inputs and similar but different inputs in a circumstance it's expected.
 
+## **FB6** Fuzzing with Grammars
+
+A **Grammar** is a way to represent syntax rules which is very useful for fuzzing because if you have something that's
+supposed to take a very structured input that can be very difficult to test with just normal fuzzing as the vast majority
+of the inputs will fail. A **Grammar** fixes this by allowing you to set it up in a way that follows that structure and gives
+inputs that should be expected to the function and tests it that way instead of giving completely random inputs. It still gives
+it different combinations but they are all structurally correct.
+
+A good example of a Grammar is below from the **Fuzzing Book**:
+
+```python
+>>> US_PHONE_GRAMMAR: Grammar = {
+>>>     "<start>": ["<phone-number>"],
+>>>     "<phone-number>": ["(<area>)<exchange>-<line>"],
+>>>     "<area>": ["<lead-digit><digit><digit>"],
+>>>     "<exchange>": ["<lead-digit><digit><digit>"],
+>>>     "<line>": ["<digit><digit><digit><digit>"],
+>>>     "<lead-digit>": ["2", "3", "4", "5", "6", "7", "8", "9"],
+>>>     "<digit>": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+}
+```
+
+The Grammar above gets you a properly structured phone number and it uses only things that would be in a phone number.
+this allows you to generate a phone number for fuzzing in the proper structure and in a way that it could be a real phone number.
+
+### Use-Case
+
+This is very useful for Chasten as it takes a lot of highly structured inputs making normal fuzzing not good enough for the purposes
+of testing a large majority of the tool but with Grammars we can get those structured inputs but also some of the randomness that comes
+with fuzzing so its a bit of best of both worlds and its very useful for testing tools like Chasten.

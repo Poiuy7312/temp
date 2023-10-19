@@ -162,6 +162,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-4" id="toc-use-case-4" class="nav-link" data-scroll-target="#use-case-4">Use-Case</a></li>
   </ul></li>
+  <li><a href="#fb6-fuzzing-with-grammars" id="toc-fb6-fuzzing-with-grammars" class="nav-link" data-scroll-target="#fb6-fuzzing-with-grammars"><strong>FB6</strong> Fuzzing with Grammars</a>
+  <ul class="collapse">
+  <li><a href="#use-case-5" id="toc-use-case-5" class="nav-link" data-scroll-target="#use-case-5">Use-Case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -267,6 +271,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-4" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-4">Use-Case</h3>
 <p>I believe this version of testing for chasten is a lot more useful and is kind of what hypothesis is used for while it’s not the same thing it allows you to focus your fuzzing through the use of strategies. So the concept itself is very useful making it so you not just testing random inputs and similar but different inputs in a circumstance it’s expected.</p>
+</section>
+</section>
+<section id="fb6-fuzzing-with-grammars" class="level2">
+<h2 class="anchored" data-anchor-id="fb6-fuzzing-with-grammars"><strong>FB6</strong> Fuzzing with Grammars</h2>
+<p>A <strong>Grammar</strong> is a way to represent syntax rules which is very useful for fuzzing because if you have something that’s supposed to take a very structured input that can be very difficult to test with just normal fuzzing as the vast majority of the inputs will fail. A <strong>Grammar</strong> fixes this by allowing you to set it up in a way that follows that structure and gives inputs that should be expected to the function and tests it that way instead of giving completely random inputs. It still gives it different combinations but they are all structurally correct.</p>
+<p>A good example of a Grammar is below from the <strong>Fuzzing Book</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> US_PHONE_GRAMMAR: Grammar <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;start&gt;"</span>: [<span class="st">"&lt;phone-number&gt;"</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;phone-number&gt;"</span>: [<span class="st">"(&lt;area&gt;)&lt;exchange&gt;-&lt;line&gt;"</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;area&gt;"</span>: [<span class="st">"&lt;lead-digit&gt;&lt;digit&gt;&lt;digit&gt;"</span>],</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;exchange&gt;"</span>: [<span class="st">"&lt;lead-digit&gt;&lt;digit&gt;&lt;digit&gt;"</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;line&gt;"</span>: [<span class="st">"&lt;digit&gt;&lt;digit&gt;&lt;digit&gt;&lt;digit&gt;"</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;lead-digit&gt;"</span>: [<span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"7"</span>, <span class="st">"8"</span>, <span class="st">"9"</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span>     <span class="st">"&lt;digit&gt;"</span>: [<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"7"</span>, <span class="st">"8"</span>, <span class="st">"9"</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The Grammar above gets you a properly structured phone number and it uses only things that would be in a phone number. this allows you to generate a phone number for fuzzing in the proper structure and in a way that it could be a real phone number.</p>
+<section id="use-case-5" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-5">Use-Case</h3>
+<p>This is very useful for Chasten as it takes a lot of highly structured inputs making normal fuzzing not good enough for the purposes of testing a large majority of the tool but with Grammars we can get those structured inputs but also some of the randomness that comes with fuzzing so its a bit of best of both worlds and its very useful for testing tools like Chasten.</p>
 
 
 </section>
