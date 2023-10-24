@@ -116,3 +116,17 @@ leads to different things being the focus each week or there not being a focus a
 reasonable pace. The leaders being changed everyweek also causes people who may not be ready for that responsibility and there being
 forced into that situation which is fine in a classroom circumstance because it's relativly low stakes but I believe it's partially
 one of the reasons alot of issues have taken alot longer than expected to fix.
+
+## **SE7** [Leading at Scale](https://abseil.io/resources/swe-book/html/ch06.html)
+
+The more you move up in a leadership possions the less your technical abiltitys and understanding of the project really matter. The
+farther up you go the more broad problems you will be asked to handle but they won't be as deep as ones your used to solving. You also
+need to make trade-offs as a leader its important to understand everything has a give and take. It's important that you can be making these
+descisions and understand why they need to be made. You'll be constantly having to make new descicions and its important to make the best
+descisions you possibly can with maybe not the best understanding of the situation and its your job to guide the total direction of the group.
+
+### Use-case
+
+There isn't really much of a Useful thing for us specifically right now because the scale will never be that large but the overall concept
+of what it means to be an effective leader is important for people to understand in general. It's also important understand what taking
+on a leadership position actually implies and the types of responsibilties you will have and be expected to deal with.
