@@ -166,6 +166,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-5" id="toc-use-case-5" class="nav-link" data-scroll-target="#use-case-5">Use-Case</a></li>
   </ul></li>
+  <li><a href="#fb7-efficient-grammar-fuzzing" id="toc-fb7-efficient-grammar-fuzzing" class="nav-link" data-scroll-target="#fb7-efficient-grammar-fuzzing"><strong>FB7</strong> Efficient Grammar Fuzzing</a>
+  <ul class="collapse">
+  <li><a href="#use-case." id="toc-use-case." class="nav-link" data-scroll-target="#use-case.">Use-case.</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -290,6 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-5" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-5">Use-Case</h3>
 <p>This is very useful for Chasten as it takes a lot of highly structured inputs making normal fuzzing not good enough for the purposes of testing a large majority of the tool but with Grammars we can get those structured inputs but also some of the randomness that comes with fuzzing so its a bit of best of both worlds and its very useful for testing tools like Chasten.</p>
+</section>
+</section>
+<section id="fb7-efficient-grammar-fuzzing" class="level2">
+<h2 class="anchored" data-anchor-id="fb7-efficient-grammar-fuzzing"><strong>FB7</strong> Efficient Grammar Fuzzing</h2>
+<p>Normal fuzzing with Grammars is not the efficient because it has the possibility have making things expand infinitely in this chapter. it talks about using trees to help deal with this. Using a tree allows you to make the different parts of the Grammar into nodes which. each have a max length. It can also decide on which part should be changed depending on how much time it takes so if changing one node. costs significantly less time and memory than another you can set it up, so it prioritizes changes that one over the rest. It gets the results from the leaf’s which are nodes without children so you can have the root node which has children which may be the different parts of the structure which also have children which in the case of something like a string may represent a character. So anytime something is changed its not creating a new string or integer or anything like that it doesn’t change what is already there it either removes or adds. to it. Making it faster and allowing you to control it more.</p>
+<section id="use-case." class="level3">
+<h3 class="anchored" data-anchor-id="use-case.">Use-case.</h3>
+<p>This is useful in that it’s just a more efficient way to use Grammars but I feel that it isn’t too useful overall with chasten as I don’t believe chasten requires anything this complex to test a lot of its basic functions. So, while it is useful, I don’t think it’s something that will majorly change how at least in this circumstance changes how we write test cases.</p>
 
 
 </section>
