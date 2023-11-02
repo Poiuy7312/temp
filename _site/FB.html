@@ -170,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case." id="toc-use-case." class="nav-link" data-scroll-target="#use-case.">Use-case.</a></li>
   </ul></li>
+  <li><a href="#fb8-parsing-inputs" id="toc-fb8-parsing-inputs" class="nav-link" data-scroll-target="#fb8-parsing-inputs"><strong>FB8</strong> Parsing Inputs</a>
+  <ul class="collapse">
+  <li><a href="#use-case-6" id="toc-use-case-6" class="nav-link" data-scroll-target="#use-case-6">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -302,6 +306,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case." class="level3">
 <h3 class="anchored" data-anchor-id="use-case.">Use-case.</h3>
 <p>This is useful in that it’s just a more efficient way to use Grammars but I feel that it isn’t too useful overall with chasten as I don’t believe chasten requires anything this complex to test a lot of its basic functions. So, while it is useful, I don’t think it’s something that will majorly change how at least in this circumstance changes how we write test cases.</p>
+</section>
+</section>
+<section id="fb8-parsing-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="fb8-parsing-inputs"><strong>FB8</strong> Parsing Inputs</h2>
+<p>This chapter discusses how to use already existing inputs and have something parse them so they can be rearranged, mutated or changed to make more valid inputs. The idea of parsing inputs with grammar is just a way to get more controlled tests so now instead of controlling the structure you also control what the input values actually are to an extent. You can also have it create a derivation tree of the predefined inputs and based on a defined grammar. This reduces some randomness in Grammars allowing more plausible inputs to be tested at a better rate and even less redundant testing.</p>
+<section id="use-case-6" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-6">Use-case</h3>
+<p>There is no reason to do this currently maybe in the future but there is currently not enough time and the amount of effort to do this for a small scale project is too large to be worth implementing. The benefits are also not really that great for the most at this point fuzzing is getting more and more specific so it becoming more and more situational and kind of losing it’s original purpose. The purpose of fuzzing is to find bugs trying to control it so much may hinder its ability to do that.</p>
 
 
 </section>
