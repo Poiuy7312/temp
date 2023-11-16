@@ -139,3 +139,14 @@ of error at least in the context of the organization. It can also be a way to pr
 ### Use-case
 
 We have already started to this in with our projects specifically with committing and creating pull requests and issues. For commiting were supposed to use the format where if where adding a feature its feat: random_feature and for pull requests and issues theres a frame work that is supposed to be followed that is shown when creating either of them. We even have linters that help define some formatting rules automatically like Black and Ruff which everyones code has to adhear to those standards for the most part or it will fail the build. Although in some of these cases it's not always clear on what are rules for example me personally I didn't know we where supposed to write our commit messages in a certain format until a couple weeks in. So communicating what the rules are but other than that I feel that these concepts for the most part are already implemented.
+
+## **SE9** [Code Review](https://abseil.io/resources/swe-book/html/ch09.html)
+
+Code review is an important part of software engineering it's important for your code to be reviewed bny other before they effect the main repo for the project. At google this takes the form of making comments and people testing the changes through snapshots and comparing the changes to the current version giving feedback or just providing more information. It's important for other people to review your code as it
+gets another persons point of view and often expertise on it and can easily lead to more clean and efficient code and just a better project
+enviroment in general.
+
+### Use-case
+
+This is already used alot in this class you can't merge anything with the main branch unless its reviewed by others and people do comment on
+and give feedback to changes. So alot of these concepts are already in use. I feel however that we can still do better it often feels like people review something and don't have a real understanding of what it's actually doing they just know it doesn't break the build. I do this personally I don't really to take the time to test the code myself and while I haven't personally reviewed many peoples changes the ones I have i've rarely understood that well. So we can definitly be a little more helpful when it comes to reviewing in general but we definitaly follow alot of these concepts already.
