@@ -216,3 +216,56 @@ small scale project is too large to be worth implementing. The benefits are also
 getting more and more specific so it becoming more and more situational and kind of losing it's original purpose. The purpose of fuzzing is
 to find bugs trying to control it so much may hinder its ability to do that.
 
+## **FB9** Reducing Failure-Inducing Inputs
+
+When using tests for code that purposefully fail or cause the code to crash it's important to understand why
+it fails and to know the circumstances that cause it. If you want to fix something you need to know more than the
+fact that it's broken you need to know how and why. When running tests you should know which parts of the code are causing the issue a fuzzer or mutator based approach can tell you that it's broken but not why alot of the time. You can find this out completely manually where you keep testing until you find the issue or you can do something known as Delta Debugging which takes the inputs that broke the test or build and uses something similar to a binary search algroithim so it will take away parts of the input at a time and see if it still breaks it or if the issue is solved. This can allow you to narrow down the causes of a bug or defect and allow to more efficiently fix it if needed.
+
+An example of this is in the Fuzzingbook
+
+
+```python
+class DeltaDebuggingReducer(CachingReducer):
+    """Reduce inputs using delta debugging."""
+
+    def reduce(self, inp: str) -> str:
+        """Reduce input `inp` using delta debugging. Return reduced input."""
+
+        self.reset()
+        assert self.test(inp) != Runner.PASS
+
+        n = 2     # Initial granularity
+        while len(inp) >= 2:
+            start = 0.0
+            subset_length = len(inp) / n
+            some_complement_is_failing = False
+
+            while start < len(inp):
+                complement = inp[:int(start)] + \
+                    inp[int(start + subset_length):]
+
+                if self.test(complement) == Runner.FAIL:
+                    inp = complement
+                    n = max(n - 1, 2)
+                    some_complement_is_failing = True
+                    break
+
+                start += subset_length
+
+            if not some_complement_is_failing:
+                if n == len(inp):
+                    break
+                n = min(n * 2, len(inp))
+
+        return inp
+```
+
+This code takes an input and tests it than reduces it until it's reduced to a single character this makes debugging outputs more specific and helpful and also allow for better tracking of what's actually happening in the code when there is some sort of failure.
+
+### Use-case
+
+This is a relativly useful idea but for the context that we would us it in I feel this concept is also a little
+to much work to implement for relativly minimal gain yes it's helpful but we aren't working with super complex
+inputs and it may take more time setting this type of thing up than it would be just to figure things out manually but the concept of reducing itself is very important in debugging it is a good way to find what's wrong
+with something and can often lead to better understanding of the code. But the autonomous way of doing this is simply a little to complicated to be worth implementing on projects of the scale where working on.

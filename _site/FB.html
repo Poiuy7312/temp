@@ -174,6 +174,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-6" id="toc-use-case-6" class="nav-link" data-scroll-target="#use-case-6">Use-case</a></li>
   </ul></li>
+  <li><a href="#fb9-reducing-failure-inducing-inputs" id="toc-fb9-reducing-failure-inducing-inputs" class="nav-link" data-scroll-target="#fb9-reducing-failure-inducing-inputs"><strong>FB9</strong> Reducing Failure-Inducing Inputs</a>
+  <ul class="collapse">
+  <li><a href="#use-case-7" id="toc-use-case-7" class="nav-link" data-scroll-target="#use-case-7">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -314,6 +318,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-6" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-6">Use-case</h3>
 <p>There is no reason to do this currently maybe in the future but there is currently not enough time and the amount of effort to do this for a small scale project is too large to be worth implementing. The benefits are also not really that great for the most at this point fuzzing is getting more and more specific so it becoming more and more situational and kind of losing it’s original purpose. The purpose of fuzzing is to find bugs trying to control it so much may hinder its ability to do that.</p>
+</section>
+</section>
+<section id="fb9-reducing-failure-inducing-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="fb9-reducing-failure-inducing-inputs"><strong>FB9</strong> Reducing Failure-Inducing Inputs</h2>
+<p>When using tests for code that purposefully fail or cause the code to crash it’s important to understand why it fails and to know the circumstances that cause it. If you want to fix something you need to know more than the fact that it’s broken you need to know how and why. When running tests you should know which parts of the code are causing the issue a fuzzer or mutator based approach can tell you that it’s broken but not why alot of the time. You can find this out completely manually where you keep testing until you find the issue or you can do something known as Delta Debugging which takes the inputs that broke the test or build and uses something similar to a binary search algroithim so it will take away parts of the input at a time and see if it still breaks it or if the issue is solved. This can allow you to narrow down the causes of a bug or defect and allow to more efficiently fix it if needed.</p>
+<p>An example of this is in the Fuzzingbook</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DeltaDebuggingReducer(CachingReducer):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reduce inputs using delta debugging."""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">reduce</span>(<span class="va">self</span>, inp: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Reduce input `inp` using delta debugging. Return reduced input."""</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.reset()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">assert</span> <span class="va">self</span>.test(inp) <span class="op">!=</span> Runner.PASS</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="dv">2</span>     <span class="co"># Initial granularity</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="bu">len</span>(inp) <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            subset_length <span class="op">=</span> <span class="bu">len</span>(inp) <span class="op">/</span> n</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            some_complement_is_failing <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> start <span class="op">&lt;</span> <span class="bu">len</span>(inp):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                complement <span class="op">=</span> inp[:<span class="bu">int</span>(start)] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                    inp[<span class="bu">int</span>(start <span class="op">+</span> subset_length):]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="va">self</span>.test(complement) <span class="op">==</span> Runner.FAIL:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                    inp <span class="op">=</span> complement</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                    n <span class="op">=</span> <span class="bu">max</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                    some_complement_is_failing <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                start <span class="op">+=</span> subset_length</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> some_complement_is_failing:</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> n <span class="op">==</span> <span class="bu">len</span>(inp):</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                n <span class="op">=</span> <span class="bu">min</span>(n <span class="op">*</span> <span class="dv">2</span>, <span class="bu">len</span>(inp))</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code takes an input and tests it than reduces it until it’s reduced to a single character this makes debugging outputs more specific and helpful and also allow for better tracking of what’s actually happening in the code when there is some sort of failure.</p>
+<section id="use-case-7" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-7">Use-case</h3>
+<p>This is a relativly useful idea but for the context that we would us it in I feel this concept is also a little to much work to implement for relativly minimal gain yes it’s helpful but we aren’t working with super complex inputs and it may take more time setting this type of thing up than it would be just to figure things out manually but the concept of reducing itself is very important in debugging it is a good way to find what’s wrong with something and can often lead to better understanding of the code. But the autonomous way of doing this is simply a little to complicated to be worth implementing on projects of the scale where working on.</p>
 
 
 </section>
