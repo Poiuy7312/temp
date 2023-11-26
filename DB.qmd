@@ -1,0 +1,19 @@
+---
+title: "Professional Précis Debugging Book"
+subtitle: "Preston Smith"
+---
+
+## **DB1** Introduction to Debugging
+
+The first chapter of the debugging book mostly goes over the basics of debugging and different ways to detect a bug it talks
+about printf debugging which is when you put print statements in your code to help you keep track of what's going on it mentions
+this method is very inefficient. It also talks about that when debugging you need to solve the cause not the symptom so if you see
+a bug for a certain input you can't just fix it for that specific input you need to fix the problem in general which means finding the
+root cause. Which this chapter suggests doing through the scientific method ask a question of why something isn't working come up with
+a theory figure out how you can test it test it and repeat until you find the issue.
+
+### Use-case
+
+This is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It's not something you can't
+really figure out on your own and there's nothing in this chapter that is particurly complicated so implmenting the concepts can be almost
+immediate if they aren't already.

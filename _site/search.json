@@ -180,5 +180,19 @@
     "title": "Professional Précis SE Book",
     "section": "SE10 Documentation",
     "text": "SE10 Documentation\nDocumnetation is important because it helps spread information it’s easier to work on something if there is documnetation on how it works similar to a manual for something. It also makes it more efficient to work on something because everything is clearly outlined. Documentation is significantly more important for team based work than solo based but Documnetation on how your tool works should always be a thing because it allows you to explain how to use it and maybe give information on how to set it up if something isn’t working so more people can use the tool with less issues. When writing documnetation it’s important to keep in mind who your audience is and should generally focus on one thing at a time.\n\nUse-case\nDocumnetation is very useful for anyprogramming project it allows you to work better and mroe efficiently in teams and also explain how something should work so people can find issues easier. It also just encourages better communication and reduces bus factor because the more information is documented the less reliant you are on one person knowing the answers so using more documnetation in projects would be very beneficial for us."
+  },
+  {
+    "objectID": "DB.html",
+    "href": "DB.html",
+    "title": "Professional Précis Debugging Book",
+    "section": "",
+    "text": "The first chapter of the debugging book mostly goes over the basics of debugging and different ways to detect a bug it talks about printf debugging which is when you put print statements in your code to help you keep track of what’s going on it mentions this method is very inefficient. It also talks about that when debugging you need to solve the cause not the symptom so if you see a bug for a certain input you can’t just fix it for that specific input you need to fix the problem in general which means finding the root cause. Which this chapter suggests doing through the scientific method ask a question of why something isn’t working come up with a theory figure out how you can test it test it and repeat until you find the issue.\n\n\nThis is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It’s not something you can’t really figure out on your own and there’s nothing in this chapter that is particurly complicated so implmenting the concepts can be almost immediate if they aren’t already."
+  },
+  {
+    "objectID": "DB.html#db1-introduction-to-debugging",
+    "href": "DB.html#db1-introduction-to-debugging",
+    "title": "Professional Précis Debugging Book",
+    "section": "",
+    "text": "The first chapter of the debugging book mostly goes over the basics of debugging and different ways to detect a bug it talks about printf debugging which is when you put print statements in your code to help you keep track of what’s going on it mentions this method is very inefficient. It also talks about that when debugging you need to solve the cause not the symptom so if you see a bug for a certain input you can’t just fix it for that specific input you need to fix the problem in general which means finding the root cause. Which this chapter suggests doing through the scientific method ask a question of why something isn’t working come up with a theory figure out how you can test it test it and repeat until you find the issue.\n\n\nThis is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It’s not something you can’t really figure out on your own and there’s nothing in this chapter that is particurly complicated so implmenting the concepts can be almost immediate if they aren’t already."
   }
 ]

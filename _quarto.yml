@@ -9,6 +9,8 @@ website:
         text: SE Book
       - href: FB.qmd
         text: Fuzzing Book
+      - href: DB.qmd
+        text: Debugging Book
 
 format:
   html:
