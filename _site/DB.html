@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -113,6 +147,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#use-case" id="toc-use-case" class="nav-link" data-scroll-target="#use-case">Use-case</a></li>
   </ul></li>
+  <li><a href="#db2-tracing-executions" id="toc-db2-tracing-executions" class="nav-link" data-scroll-target="#db2-tracing-executions"><strong>DB2</strong> Tracing Executions</a>
+  <ul class="collapse">
+  <li><a href="#use-case-1" id="toc-use-case-1" class="nav-link" data-scroll-target="#use-case-1">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -143,6 +181,20 @@ ul.task-list li input[type="checkbox"] {
 <section id="use-case" class="level3">
 <h3 class="anchored" data-anchor-id="use-case">Use-case</h3>
 <p>This is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It’s not something you can’t really figure out on your own and there’s nothing in this chapter that is particurly complicated so implmenting the concepts can be almost immediate if they aren’t already.</p>
+</section>
+</section>
+<section id="db2-tracing-executions" class="level2">
+<h2 class="anchored" data-anchor-id="db2-tracing-executions"><strong>DB2</strong> Tracing Executions</h2>
+<p>Tracing a programs execution is to help with debugging by showing the step the program took when running and if there was a crash it allows you to look through the steps and see where it failed and fix the root cause of the problem more effectivly a simple way you can do this is to use sys.settrace() function which traces everyline of code run and prints it but this can sometimes give you to much information so you may want something a little more limited. an example of this</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_html_markup_traced(s):  <span class="co"># type: ignore</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    sys.settrace(traceit)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ret <span class="op">=</span> remove_html_markup(s)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    sys.settrace(<span class="va">None</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will trace the the remove_html_markup function and print out the results even if the code crashes it will show you everything that ran. As stated before this is very useful because it makes finding the cause of a bug significantly easier and more convenient.</p>
+<section id="use-case-1" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-1">Use-case</h3>
+<p>At least with chasten most of the test cases actually do get traced in fact the ones that use hypothesis are automaticlly traced by hypothesis so this type of thing is already for the most part implemented. So all we really would want is have non hypothesis functions traced but other than that this concept is already implemented for the most part.</p>
 
 
 </section>

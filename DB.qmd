@@ -17,3 +17,24 @@ a theory figure out how you can test it test it and repeat until you find the is
 This is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It's not something you can't
 really figure out on your own and there's nothing in this chapter that is particurly complicated so implmenting the concepts can be almost
 immediate if they aren't already.
+
+## **DB2** Tracing Executions
+
+Tracing a programs execution is to help with debugging by showing the step the program took when running and if there was a crash it allows
+you to look through the steps and see where it failed and fix the root cause of the problem more effectivly a simple way you can do this
+is to use sys.settrace() function which traces everyline of code run and prints it but this can sometimes give you to much information so you
+may want something a little more limited. an example of this
+
+```python
+def remove_html_markup_traced(s):  # type: ignore
+    sys.settrace(traceit)
+    ret = remove_html_markup(s)
+    sys.settrace(None)
+    return ret
+```
+This will trace the the remove_html_markup function and print out the results even if the code crashes it will show you everything that ran.
+As stated before this is very useful because it makes finding the cause of a bug significantly easier and more convenient.
+
+### Use-case
+
+At least with chasten most of the test cases actually do get traced in fact the ones that use hypothesis are automaticlly traced by hypothesis so this type of thing is already for the most part implemented. So all we really would want is have non hypothesis functions traced but other than that this concept is already implemented for the most part.

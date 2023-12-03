@@ -201,5 +201,12 @@
     "title": "Professional Précis SE Book",
     "section": "SE11 Test Overview",
     "text": "SE11 Test Overview\nTesting is an important aspect of writing a program everyone does it to varying degrees whether it’s manually running it to see if it has an expected outputs or have automatic tests set up through things like pytest. Testing is important because without it you really have no idea if your code works or is well designed. Not only do tests ensure a higher quality code base but it also improves your ability to make changes by allowing bugs to be found faster and more efficiently making them easier to fix.\n\nUse-case\nWe already use test cases with chasten and cell-veyor and this concept is pretty basic to software engineering so I feel that we have already implemented this idea for the most part."
+  },
+  {
+    "objectID": "DB.html#db2-tracing-executions",
+    "href": "DB.html#db2-tracing-executions",
+    "title": "Professional Précis Debugging Book",
+    "section": "DB2 Tracing Executions",
+    "text": "DB2 Tracing Executions\nTracing a programs execution is to help with debugging by showing the step the program took when running and if there was a crash it allows you to look through the steps and see where it failed and fix the root cause of the problem more effectivly a simple way you can do this is to use sys.settrace() function which traces everyline of code run and prints it but this can sometimes give you to much information so you may want something a little more limited. an example of this\ndef remove_html_markup_traced(s):  # type: ignore\n    sys.settrace(traceit)\n    ret = remove_html_markup(s)\n    sys.settrace(None)\n    return ret\nThis will trace the the remove_html_markup function and print out the results even if the code crashes it will show you everything that ran. As stated before this is very useful because it makes finding the cause of a bug significantly easier and more convenient.\n\nUse-case\nAt least with chasten most of the test cases actually do get traced in fact the ones that use hypothesis are automaticlly traced by hypothesis so this type of thing is already for the most part implemented. So all we really would want is have non hypothesis functions traced but other than that this concept is already implemented for the most part."
   }
 ]
