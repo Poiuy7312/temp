@@ -194,5 +194,12 @@
     "title": "Professional Précis Debugging Book",
     "section": "",
     "text": "The first chapter of the debugging book mostly goes over the basics of debugging and different ways to detect a bug it talks about printf debugging which is when you put print statements in your code to help you keep track of what’s going on it mentions this method is very inefficient. It also talks about that when debugging you need to solve the cause not the symptom so if you see a bug for a certain input you can’t just fix it for that specific input you need to fix the problem in general which means finding the root cause. Which this chapter suggests doing through the scientific method ask a question of why something isn’t working come up with a theory figure out how you can test it test it and repeat until you find the issue.\n\n\nThis is obviously useful because it just broad debugging concepts and thing to keep in mind when doing it. It’s not something you can’t really figure out on your own and there’s nothing in this chapter that is particurly complicated so implmenting the concepts can be almost immediate if they aren’t already."
+  },
+  {
+    "objectID": "index.html#se11-test-overview",
+    "href": "index.html#se11-test-overview",
+    "title": "Professional Précis SE Book",
+    "section": "SE11 Test Overview",
+    "text": "SE11 Test Overview\nTesting is an important aspect of writing a program everyone does it to varying degrees whether it’s manually running it to see if it has an expected outputs or have automatic tests set up through things like pytest. Testing is important because without it you really have no idea if your code works or is well designed. Not only do tests ensure a higher quality code base but it also improves your ability to make changes by allowing bugs to be found faster and more efficiently making them easier to fix.\n\nUse-case\nWe already use test cases with chasten and cell-veyor and this concept is pretty basic to software engineering so I feel that we have already implemented this idea for the most part."
   }
 ]

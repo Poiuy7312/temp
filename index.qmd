@@ -158,3 +158,15 @@ Documnetation is important because it helps spread information it's easier to wo
 ### Use-case
 
 Documnetation is very useful for anyprogramming project it allows you to work better and mroe efficiently in teams and also explain how something should work so people can find issues easier. It also just encourages better communication and reduces bus factor because the more information is documented the less reliant you are on one person knowing the answers so using more documnetation in projects would be very beneficial for us.
+
+## **SE11** [Test Overview](https://abseil.io/resources/swe-book/html/ch11.html)
+
+Testing is an important aspect of writing a program everyone does it to varying degrees whether it's manually running it
+to see if it has an expected outputs or have automatic tests set up through things like pytest. Testing is important because
+without it you really have no idea if your code works or is well designed. Not only do tests ensure a higher quality code base
+but it also improves your ability to make changes by allowing bugs to be found faster and more efficiently making them easier to fix.
+
+### Use-case
+
+We already use test cases with chasten and cell-veyor and this concept is pretty basic to software engineering so I feel that we have already
+implemented this idea for the most part.
