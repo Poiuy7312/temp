@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-1" id="toc-use-case-1" class="nav-link" data-scroll-target="#use-case-1">Use-case</a></li>
   </ul></li>
+  <li><a href="#db3-assertions" id="toc-db3-assertions" class="nav-link" data-scroll-target="#db3-assertions"><strong>DB3</strong> Assertions</a>
+  <ul class="collapse">
+  <li><a href="#use-case-2" id="toc-use-case-2" class="nav-link" data-scroll-target="#use-case-2">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -195,6 +199,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-1" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-1">Use-case</h3>
 <p>At least with chasten most of the test cases actually do get traced in fact the ones that use hypothesis are automaticlly traced by hypothesis so this type of thing is already for the most part implemented. So all we really would want is have non hypothesis functions traced but other than that this concept is already implemented for the most part.</p>
+</section>
+</section>
+<section id="db3-assertions" class="level2">
+<h2 class="anchored" data-anchor-id="db3-assertions"><strong>DB3</strong> Assertions</h2>
+<p>Assert statements are very useful when it comes to debugging as they can make writing test cases very easy by leveraging things that should be true. So in the case of test cases if you know what the output should be you can use an assert statement that will throw an error if the output isn’t what is expected an example of this in the debugging book is</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_square_root() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> square_root(<span class="dv">4</span>) <span class="op">==</span> <span class="dv">2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> square_root(<span class="dv">9</span>) <span class="op">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is testing a function that finds the square root of numbers and leverages the fact that 4 and 9 are perfect squares and we know what the square root should be. So it’s checking that the output is what’s expected and that it’s finding the square root properly.</p>
+<p>Another way they can be used is a form of debug handling in the following example there used to check to make sure that the provided input isn’t a negative number and to check that the result of the computation is close to the expected value by utilizing the math module. If the code doesn’t fit these criteria it will throw an <strong>AssertionError</strong> and stop running</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> square_root(x):  <span class="co"># type: ignore</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> x <span class="op">&gt;=</span> <span class="dv">0</span>  <span class="co"># precondition</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    guess <span class="op">=</span> x <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> approx <span class="op">!=</span> guess:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        approx <span class="op">=</span> guess</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        guess <span class="op">=</span> (approx <span class="op">+</span> x <span class="op">/</span> approx) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> math.isclose(approx <span class="op">*</span> approx, x)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> approx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="use-case-2" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-2">Use-case</h3>
+<p>We already use a ton of assert statements in test cases as they are easy to use and make checking things alot simpler. We don’t really use them for debug handling and exampled in the debugging book nor do we really need to but it is a way they can be used. Since for the most part we already use assert statements I don’t really think there is anything we can implement that’s new from this chapter of the debugging book but it may be useful in the future.</p>
 
 
 </section>

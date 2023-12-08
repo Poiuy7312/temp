@@ -38,3 +38,38 @@ As stated before this is very useful because it makes finding the cause of a bug
 ### Use-case
 
 At least with chasten most of the test cases actually do get traced in fact the ones that use hypothesis are automaticlly traced by hypothesis so this type of thing is already for the most part implemented. So all we really would want is have non hypothesis functions traced but other than that this concept is already implemented for the most part.
+
+## **DB3** Assertions
+
+Assert statements are very useful when it comes to debugging as they can make writing test cases very easy by leveraging things that should be true. So in the case of test cases if you know what the output should be you can use an assert statement that will throw an error if the output isn't what is expected an example of this in the debugging book is
+
+```python
+def test_square_root() -> None:
+    assert square_root(4) == 2
+    assert square_root(9) == 3
+```
+
+This is testing a function that finds the square root of numbers and leverages the fact that 4 and 9 are perfect squares and we know what the
+square root should be. So it's checking that the output is what's expected and that it's finding the square root properly.
+
+Another way they can be used is a form of debug handling in the following example there used to check to make sure that the provided input
+isn't a negative number and to check that the result of the computation is close to the expected value by utilizing the math module. If the
+code doesn't fit these criteria it will throw an **AssertionError** and stop running
+
+```python
+def square_root(x):  # type: ignore
+    assert x >= 0  # precondition
+
+    approx = None
+    guess = x / 2
+    while approx != guess:
+        approx = guess
+        guess = (approx + x / approx) / 2
+
+    assert math.isclose(approx * approx, x)
+    return approx
+```
+
+### Use-case
+
+We already use a ton of assert statements in test cases as they are easy to use and make checking things alot simpler. We don't really use them for debug handling and exampled in the debugging book nor do we really need to but it is a way they can be used. Since for the most part we already use assert statements I don't really think there is anything we can implement that's new from this chapter of the debugging book but it may be useful in the future.
