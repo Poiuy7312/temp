@@ -155,6 +155,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#use-case-2" id="toc-use-case-2" class="nav-link" data-scroll-target="#use-case-2">Use-case</a></li>
   </ul></li>
+  <li><a href="#db4-statistical-debugging-automatic-fault-localization" id="toc-db4-statistical-debugging-automatic-fault-localization" class="nav-link" data-scroll-target="#db4-statistical-debugging-automatic-fault-localization"><strong>DB4</strong> Statistical Debugging (Automatic Fault Localization)</a>
+  <ul class="collapse">
+  <li><a href="#use-case-3" id="toc-use-case-3" class="nav-link" data-scroll-target="#use-case-3">Use-case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -223,6 +227,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-case-2" class="level3">
 <h3 class="anchored" data-anchor-id="use-case-2">Use-case</h3>
 <p>We already use a ton of assert statements in test cases as they are easy to use and make checking things alot simpler. We don’t really use them for debug handling and exampled in the debugging book nor do we really need to but it is a way they can be used. Since for the most part we already use assert statements I don’t really think there is anything we can implement that’s new from this chapter of the debugging book but it may be useful in the future.</p>
+</section>
+</section>
+<section id="db4-statistical-debugging-automatic-fault-localization" class="level2">
+<h2 class="anchored" data-anchor-id="db4-statistical-debugging-automatic-fault-localization"><strong>DB4</strong> Statistical Debugging (Automatic Fault Localization)</h2>
+<p>The idea of Statistical Debugging is kind of self explanatory it’s the idea that when you have a program that doesn’t always run you can manually or have a program automatically run it and try to find a correlation between the failures and a specific part of the program whether it’s just a single line or if something isn’t being covered in tested it may be considered a possibility. The idea is to trace code when it’s being run and find similaritys between failures to narrow down the cause it’s a similar concept to reducing failute inducing inputs in the fuzzing book.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> code_with_coverage(function: Callable, coverage: Coverage) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    source_lines, starting_line_number <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       getsourcelines(function)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    line_number <span class="op">=</span> starting_line_number</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> source_lines:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        marker <span class="op">=</span> <span class="st">'*'</span> <span class="cf">if</span> (function, line_number) <span class="kw">in</span> coverage <span class="cf">else</span> <span class="st">' '</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>line_number<span class="sc">:4}</span><span class="ss"> </span><span class="sc">{</span>marker<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>line<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        line_number <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Coverage is heavily used in this process as it tells what lines where run and what weren’t which can be used to help to determine the pausible cause of failure like maybe it only fails if line 3 is run so it can determine a large correlation between the line and the code crashing. The above function printing which lines are run and you can use something like this to help analyze what’s going. So in a way all this concept is statistical analysis trying to find a correlation between something.</p>
+<section id="use-case-3" class="level3">
+<h3 class="anchored" data-anchor-id="use-case-3">Use-case</h3>
+<p>This is useful in a very general sense as it’s an important process in debugging in general and just running the code and seeing what happens can a encompass this concept in a general sense so in that way these concept are already use but having code automatically run seems like It would have to be a future endeavor as a lot of things already set up do some of this already and normal tracing achieves a lot of the same functionallity just without the reduction in data. So it would be a cool thing to implement in the future but not with the time we have left to work on the projects.</p>
 
 
 </section>
